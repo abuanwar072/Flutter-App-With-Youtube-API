@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:map/components/shimmer.dart';
+import 'package:map/components/video_card_shimmer.dart';
 import 'package:map/constants.dart';
 import 'package:map/models/Video.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'components.dart';
+import 'components/video_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) =>
                       VideoCard(video: snapshot.data![index]),
                 )
-              : CircularProgressIndicator(),
+              : ListView.builder(
+                  itemCount: 2,
+                  itemBuilder: (context, index) => VideoCardShimmer(),
+                ),
         ),
       ),
     );
@@ -50,18 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Future<List<Video>> fetchVideos() async {
   final response = await http.get(Uri.parse(
-      'https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelId&part=snippet,id&order=date&maxResults=20'));
+      'https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelId&part=snippet,id&order=date&maxResults=15'));
 
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    // print(jsonDecode(response.body)['items']);
     Iterable items = jsonDecode(response.body)['items'];
     List<Video> videos = items.map((video) => Video.fromJson(video)).toList();
     return videos;
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
     throw Exception('Failed to load album');
   }
 }

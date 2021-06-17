@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:map/models/Video.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
@@ -59,23 +59,6 @@ class VideoCard extends StatelessWidget {
                   .caption!
                   .copyWith(fontWeight: FontWeight.bold),
             ),
-            // subtitle: DefaultTextStyle(
-            //   style: Theme.of(context).textTheme.caption!,
-            //   child: Row(
-            //     children: [
-            //       Text(NumberFormat.compact().format(17800) + " Views"),
-            //       Padding(
-            //         padding: const EdgeInsets.symmetric(
-            //             horizontal: defaultPadding / 2),
-            //         child: CircleAvatar(
-            //           radius: 2,
-            //           backgroundColor: Colors.grey,
-            //         ),
-            //       ),
-            //       Text("3 days ago"),
-            //     ],
-            //   ),
-            // ),
           ),
         ],
       ),
