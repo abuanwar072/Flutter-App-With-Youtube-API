@@ -2,8 +2,6 @@ import 'dart:convert';
 
 Video videoFromJson(String str) => Video.fromJson(json.decode(str));
 
-String videoToJson(Video data) => json.encode(data.toJson());
-
 class Video {
   Video({
     this.publishedAt,
@@ -29,13 +27,4 @@ class Video {
         description: json["snippet"]["description"],
         thumbnailUrl: json["snippet"]["thumbnails"]["medium"]["url"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "publishedAt": publishedAt!.toIso8601String(),
-        "channelId": channelId,
-        "videoId": videoId,
-        "title": title,
-        "description": description,
-        "thumbnail_url": thumbnailUrl,
-      };
 }

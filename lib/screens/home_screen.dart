@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:map/components/shimmer.dart';
 import 'package:map/components/video_card_shimmer.dart';
 import 'package:map/constants.dart';
 import 'package:map/models/Video.dart';
@@ -62,6 +60,6 @@ Future<List<Video>> fetchVideos() async {
     List<Video> videos = items.map((video) => Video.fromJson(video)).toList();
     return videos;
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load');
   }
 }
